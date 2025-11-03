@@ -1,0 +1,181 @@
+/* ======= GENERAL THEME ======= */
+body {
+    font-family: 'Inter', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #1e293b;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ======= NAVBAR ======= */
+nav {
+    background: linear-gradient(90deg, #0f172a, #1e3a8a);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+nav .text-2xl {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+nav a {
+    color: #e2e8f0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: 2px;
+}
+
+nav a:hover {
+    color: #93c5fd;
+    border-bottom: 2px solid #3b82f6;
+}
+
+/* ======= HERO SECTION ======= */
+main {
+    flex: 1;
+    padding: 4rem 1rem;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+main h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 1rem;
+}
+
+main p {
+    font-size: 1.1rem;
+    color: #334155;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* ======= CTA BUTTON ======= */
+a[href="/upload"] {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    padding: 0.9rem 2.2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+a[href="/upload"]:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    box-shadow: 0 8px 20px rgba(29, 78, 216, 0.45);
+    transform: translateY(-2px);
+}
+
+/* ======= FEATURE CARDS ======= */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: 3rem;
+}
+
+.grid div {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    color: #1e293b;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.grid div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+/* ======= FOOTER ======= */
+footer {
+    background: #0f172a;
+    color: #cbd5e1;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ======= SCROLLBAR ======= */
+::-webkit-scrollbar {
+    width: 0.65em;
+}
+::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+::-webkit-scrollbar-track {
+    background: #e2e8f0;
+}
+
+.bg-neumorphic {
+    background: #222f43;
+    box-shadow: 8px 8px 24px #182035, -8px -8px 24px #283950;
+    border-radius: 1.25rem;
+}
+
+.button-neumorphic {
+    background: #243651;
+    box-shadow: 4px 4px 12px #182538, -4px -4px 12px #31426c;
+    border: none;
+    color: #dedfff;
+    border-radius: 0.75rem;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    transition: box-shadow 0.2s, background 0.2s;
+}
+
+.button-neumorphic:hover {
+    background: #16203a;
+    box-shadow: 2px 2px 6px #16203a, -2px -2px 6px #31426c;
+    color: #8ec7ee;
+}
+
+/* Card styles */
+.card {
+    background: #25314a;
+    border-radius: 1.25rem;
+    box-shadow: 0 2px 8px #1c2339;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Tab button active/inactive */
+.tab-btn {
+    border-radius: 1rem 1rem 0 0;
+    background: #25314a;
+    color: #aadfff;
+    border-bottom: 2px solid transparent;
+}
+.tab-btn.active {
+    background: #315085;
+    color: #fff;
+    border-bottom: 2px solid #3192dd;
+}
+
+/* Misc form elements for upload */
+input[type=file] {
+    background: #f6f8fa;
+    border: 1px solid #3b4864;
+    border-radius: 0.75rem;
+    color: #182538;
+}
+

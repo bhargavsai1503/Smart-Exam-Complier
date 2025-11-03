@@ -1,0 +1,3 @@
+﻿syntax analysis
+semantic analysis
+lexical analyser

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Question Paper</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body class="min-h-screen flex flex-col bg-gray-50">
+  <nav class="flex items-center justify-between px-6 py-4 shadow-lg sticky top-0 z-50 bg-white">
+    <div class="text-2xl font-bold tracking-wide">SmartExam Compiler</div>
+    <div class="space-x-6 text-lg">
+      <a href="/">Home</a>
+      <a href="/upload">Upload</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/tree">Parse Tree</a>
+      <a href="/enhanced">Enhanced Paper</a>
+    </div>
+  </nav>
+
+  <main class="p-10 max-w-2xl mx-auto w-full">
+    <h1 class="text-4xl font-extrabold mb-8 text-center">Upload Files</h1>
+    
+    <form action="/upload" method="POST" enctype="multipart/form-data" 
+          class="bg-white p-8 rounded-lg shadow-xl border border-gray-200">
+
+      <div class="mb-6">
+        <label for="paper" class="block text-lg font-medium text-gray-700 mb-2">
+          1. Question Paper (PDF, PNG, JPG)
+        </label>
+        <input type="file" id="paper" name="paper" required
+              class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+      </div>
+
+      <div class="mb-8">
+        <label for="syllabus" class="block text-lg font-medium text-gray-700 mb-2">
+          2. Syllabus File (.txt)
+        </label>
+        <input type="file" id="syllabus" name="syllabus" required
+              class="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+      </div>
+
+      <button type="submit" 
+              class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 text-lg font-semibold py-3 px-6 rounded-lg">
+        Start Analysis
+      </button>
+    
+    </form>
+  </main>
+
+  <footer class="text-center mt-auto py-4 text-sm text-gray-500">
+    Built with Python, Lex, Yacc, Flask | IIITDM Kancheepuram
+  </footer>
+</body>
+</html>

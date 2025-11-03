@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Question Paper | SmartExam Compiler</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-gray-800 min-h-screen text-white">
+    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
+        <div class="text-2xl font-bold">SmartExam Compiler</div>
+        <a href="/" class="hover:text-blue-300">Home</a>
+        <a href="/dashboard" class="hover:text-blue-300">Dashboard</a>
+    </nav>
+    <main class="max-w-5xl mx-auto mt-8 p-8 bg-blue-800 rounded-2xl shadow-lg">
+        <h2 class="text-3xl font-bold mb-4">Enhanced Question Paper</h2>
+        <a href="/download/enhanced" class="py-2 px-5 mr-2 bg-blue-700 rounded-lg shadow font-bold hover:bg-blue-600 transition">Download TXT</a>
+        <a href="/download/pdf-report" class="py-2 px-5 bg-blue-700 rounded-lg shadow font-bold hover:bg-blue-600 transition">Download PDF Report</a>
+        <h3 class="mt-8 mb-2 font-semibold">Improvement Suggestions:</h3>
+        <ul class="list-disc ml-8 mb-4">
+            {% for suggestion in suggestions %}
+                <li>{{suggestion}}</li>
+            {% endfor %}
+        </ul>
+        <h3 class="font-semibold mb-2">Enhanced Paper:</h3>
+        <pre class="bg-blue-900 p-4 rounded mt-2 whitespace-pre-wrap text-sm">{{ enhanced_text }}</pre>
+    </main>
+    <footer class="text-center mt-8 py-4 bg-gray-900 text-sm">
+        SmartExam Compiler | Enhanced Output
+    </footer>
+</body>
+</html>

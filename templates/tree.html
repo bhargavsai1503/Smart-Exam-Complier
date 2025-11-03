@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parse Tree Visualization | SmartExam Compiler</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-gray-800 min-h-screen text-white">
+    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
+        <div class="text-2xl font-bold">SmartExam Compiler</div>
+        <a href="/" class="hover:text-blue-300">Home</a>
+    </nav>
+    <main class="max-w-5xl mx-auto mt-8 bg-blue-800 rounded-2xl shadow-lg p-8">
+        <h2 class="text-3xl font-bold mb-6">Parse Tree Visualization</h2>
+        <div id="tree" class="w-full h-96 bg-blue-900 rounded"></div>
+        <button onclick="window.location.reload()" class="mt-6 py-2 px-5 rounded-lg bg-blue-700">Reload Tree</button>
+    </main>
+    <footer class="text-center mt-12 py-4 bg-gray-900 text-sm">
+        SmartExam Compiler | AST View
+    </footer>
+    <script id="ast-data" type="application/json">
+    {{ ast|tojson|safe }}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const data = JSON.parse(document.getElementById('ast-data').textContent);
+    d3.select("#tree").append("pre").text(JSON.stringify(data, null, 2));
+});
+</script>
+
+</body>
+</html>
