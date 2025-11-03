@@ -1,0 +1,346 @@
+)Given cyuations,
+2X1 t3 X- X3- X40
+O
+Linat Alqtho Assigent 1
+4
+3
+qXit6y2-313-34-3X5-0)
+2
+T is of fom AX=0 wre
+6-3-3 -3
+6
+row Teduing A
+2 3/4 -1 -1 0
+L|3
+9 6-3 -3 -3
+0
+-3 -3
+6
+Pit
+3
+TGranadsep
+5236Iol6
+q 6-3-3 -3
+3e3-9ei
+/2 /2 -3
+00I1-L
+Graradup
+tteIta
+X-X5o ) Xr=ti
+X2=0
+The free Variables ate y4,Ys Lt a=S, X5 Ft
+1
+Solution w/(tio,2t-S, Sit): tiseey
+0
+Wt(ljo,9rort) + s (0, 0,-,tjo) tst 2y
+-span of {Cnot,0,), Co, o,-\yd,o) .
+Vectoss that spon
+W afe (i0,2( O,1) , (o,0,-ljl|O)
+presrves
+Lt
+TGraradep
+C53B10j6
+TOw Yduad hleon matiix 1ow equial
+L)Lt e be
+to A, ut leiPrPry (1en) be non Zr0 1ows of
+Row cuivalencL prsuv
+ow spaay hena Aard R
+have
+Sarne
+Culit-- +GPiF0, cieF:
+2
+2 has
+t esn non urO Tows
+neorly ineperen
+and
+spanning Tow Spau of 2
+AS
+2 i
+in 1ow Tdad cchleon form, uading
+Granadup 2
+erty in tach row occurs in
+claim 1e
+span A
+Let x
+(XNti -) be
+As
+eis obtauhtd fron n by
+A
+Tis PrOVg thatE e
+sparn A
+Lt
+(YX--Xn ) Can be
+writen oy XiI tklz4 --tXnta
+wre
+c repesnts operakon pr formed
+Pr ase inaorly inda ptrdtr
+us
+e forms
+bayi's foY Tow Spae A
+3) Lt V Clht3,4)
+Vi (413j2,).
+ua oumrn
+Ci CieB4) 4 (43,2 i!) =0.
+-)
+Ct 4C10O
+tCy t3 (-0 -O
+TGranadu)
+cSL381ol6
+chck if
+Vijv
+are ineary dipendent
+CiVit CtV2=0, CiER
+4CiC1 -0. -(4)
+arbitory vtor in e
+tli t3 Ci =0
+pesfororing 1ouw opotor
+) C1-o -) c =0it| Oy sout'on is Chelto.
+Granodup
+3
+ViNh
+arc linarly ndupendunt
+T0 form o basis on pt, hwo more
+reary
+indupendint
+Vecor s are
+reqwiy Cd
+Corsidur standord
+aie inuor y indpt pen form tach
+Basis of p4
+isontang pt is vi Ny is < (rtBy4), (ti3121),)
+(1,0,0,0), (o;lj0;0)
+TGraradep
+CSL38lol6
+4) NCT): ( (AK13X,2x iv): XEpy
+span of (CA1321D}
+The sed CA13/2 ) is ineorly indupendrt and spar
+NCT) TRy fojmy bay's NCr).
+-) Tone (T) -dim (et)-dim(NC))- 3:
+othr and vi
+Basis for pt
+-) Tmage of T must be e3 for Tto be onto
+wrt NT)- (413,2 1),b,, b, ibay hrt
+bz b3 pb afe linay Ly indprdint and not in NCT)
+We
+taee
+(0,0,0), b3bti
+FoY V= C413,2) ENCT), T(U)=0
+(oplj0, 0) b4 -3(o,o,0)
+T(b) = i- (l1010) , WUbs)- C1- (0,lio) TCba) -c3- (o,o )
+The
+coumny of
+T orrs pordy to images of
+bayis
+vecds
+Granadep
+basis
+Vetors V,-(i10,0,0) , Va
+(ol,0, o) that
+9)
+The
+Touws of T are
+Cil1(3 Whih Spon p lence
+T: 24
+orth
+Orto Linat tans fomation T:pt p' uoifh vCr)
+[oI00
+Lax138 /24;X): xcay is gien by T=
+5)
+Rone Nullity Thorcm
+Lt
+V and
+F and
+T be
+u'r
+that
+W Suppose
+Procf?
+W bt vt dor spa us ove fud
+V
+trans formodhbn pom
+V intO
+Vis fintt-dimuns ioral- Thn
+1 Grarodu
+51381ol6
+Yonk (T) t nutity CT) dim v
+Lt
+for N, th null
+s paa ofT: There aYe Vecors
+that
+dy -te dny s basis for V We shall now prove
+that (TavA
+Tent is a basi's for arge 0f T The
+VCcors Txi-Tán Cytarny span rangt of T , 5inlt
+Tayti
+T0
+for jek, we su that TAvas t -^ TKn span
+Yarge
+To Se that these Vcos afe indupendnt suppose
+we
+have ScalarS Ci Such that
+n
+and aco1 dngly the vedor d=S Cidi is the null
+Graradeup
+5
+6)
+thuy
+Space
+0f T Since |d
+must
+be
+s calars bibe such that dbi di
+and
+Since di
+dn
+T Granadoep
+5L3BIl6.
+de
+form a bas i's for Nrthr
+-) 6'= ((2,0), (31)
+aye
+nar y indepencnt
+Tan forma basis
+for
+Tornge
+bf Tiey T=n-k (E- uity CT)
+Ttk =n) rank (T) + nullity Cr) - dim Cv)
+Lu
+Vi- Cm)
+Vi
+Crz) Akrnat ordar hay
+VPV, V= PVe
+(ti0)
+Graradup 6
+We
+nud to find
+mutrix Q such thot (<]6@J6
+must
+-) Vi= avit by
+-) ) 2aitbi = I
+-)
+Ean
+be
+ckprey cd ay
+inear Com biration of
+solving above cvS, ai3, bi
+/3
+VË
+az V't azVy
+sokvig
+aibtFR
+ahive Cys'I a) =0, bL= 1
+The
+tansfor mathi'on matix @is
+Q
+Ktyt2=0, Xyiz ¬V
+T Granadeep
+C5L3 BIdl6
+'3
+) 2=-Cxty)
+yz -(4z), x=-(y42)
+oN of Kiy2 Can be writen as inor Combinaion
+of otheY
+two
+As X-Cy42), Xx Can be cpresstd oy Linar omhinotio
+of
+y i.e) XE span (9 12y-) span{yi2y sporx 19}--0
+AS 2: -+9))2 is Cplersed ay inar ombinctor of
+X9i-) 2¬ SPan xiy) span (Xiy} D spon(y2y 2
+Granadup
+Spun 19}= span(912y -0
+y=-Ck2) yis Ainar Combinahion of xrz , ye sporysiz}
+) span x2}2 span(9n} -
+spunyi2y span(zi
+-
+From 3O
+span(inyy-spor 9z}spon(2 oxy
+1) Vv
+Vn
+span V. Any Vecor then Can be wyi tn ay
+V=CiVit-tCnVn, CiEF) VEV
+for i=23n Vi Can
+be
+wittn ay
+vj= (Vi- Vi) +V, -O
+FYOm (, v (an be wittn ay
+T Granadup
+C5238lo16
+V= span
+Vi VyViVg-vj----Vn-Viy
+t is Mroved that vinyVjVn-Vi spon v
+He st
+solution to
+Vile:
+Vh is inatly induperdirt the
+CVitCVt
+tnvn=O, CiEF ,iS
+Graned
+Considur
+avit arV-Vi) 4a3(Vs Vi)t tanCvn-Vi)=0
+(a-ag
+AS Viz
+Vn
+aye Lihearly indeperdent, thuir
+Cotfiant
+must
+be ZU0
+ai-a1--r -an0 Q)=0d3
+0
+=) aO
+-an) Vtarvytaz V3 t
+4anvn -0
+As all ocffia'erts afc 200, it is poved that viVe Vi
+Vo-Vi ae ineary indpend1nt
+Row Spaa of AB (ontang
+ihear combinationg of Yows
+f
+AB- EAch rOw 04 AB
+iS
+unar Connbiraton of A
+AB= A;6
+N(AB) =
+EVey vector in erAR) Can be csprd as Combiratin
+of Tous of A. ie eCAB)c PCA)
+TGranadsep
+S3lol6
+)
+ABY
+If XENCB), 6XF0
+) xe NAB)
+ABX=04 x¬NB)
+A (BX) =o
+N C8) C N CAB) )
+NCAB) >N6)
+aranaclp 9
+Nulspaa of AB is
+1o) Proof (G-)1)
+TOT=0
+1f RT)= NC) for any yeV,T(U)e eer)- Nr)
+)T(T0) -o Skowirg ToT-0
+)T40
+ecr)=NC), f T=0, RCr) Jo4, Nr) =V, it cartiadits
+the cquaty ec)-NCT) ihne Tf0
+din (v)- tonk (T) t nullity (NC)
+If PC)= NCT)
+dim (e cr)) =din (NCr) . Lot r-1arker)
+)n=4Y )=n/2 )
+n must be even
+Hii Proved thot if 2cT)=NCT), thn ToT=0,T{0|
+nis cVen , Ya
+CT) =n1
+Proof Cii=):
+ToT =0 for any veV, Tv) E NCT)
+) ecr)c NCT)
+T6nanadiep
+C523810l6
+O
+Jim(v) = vane (r) tdim (NCT))
+As
+Tane CT) = nh dim cv)=o
+From O,)
+2) =NT)
+-) rutlity cr)= nh )
+ronk () -llity Cr) -O
+.It is Proved that above sttlmes are ca/uivalint
+Granadep
+I0

@@ -1,0 +1,12 @@
+digraph AST {
+  node [shape=record];
+  root [label="{Paper|stub}"];
+  q1 [label="{Q1|Marks: 0\n|\n| 99\n--- PAGE 2 ---\n(b) ‘Explain the ER-p arveing algorithm with an\nexample . ie 3)\n(a) Explain in jetail about D...}"];
+  root -> q1;
+  q2 [label="{Q2|Marks: 0\n(b) Discuss: ¢heraddress code andits implementation with \nexample: (13)\n(a) Discuss. about: Ae run: tune: storage mana...}"];
+  root -> q2;
+  q3 [label="{Q3|Marks: 0\n(€) pPxplain che principle: gOurCces: of code optimization. in detail. (13)\nation of the ba\nsic block: with an \nexamp...}"];
+  root -> q3;
+  q4 [label="{Q4|Marks: 0\nmark's)\ngrammar wall, work. and ‘compare various parser\node: ‘plocks? 7 (15)\ncontext: free :\nsing” yarlous ¢\n(a) Ho...}"];
+  root -> q4;
+}

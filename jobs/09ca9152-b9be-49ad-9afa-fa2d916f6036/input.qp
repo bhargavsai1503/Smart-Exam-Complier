@@ -1,0 +1,34 @@
+
+[HEADER]
+    SUBJECT: "Unknown Subject"
+    TOTAL_MARKS: 100
+    TOTAL_TIME: 180
+    SYLLABUS_PATH: "jobs\09ca9152-b9be-49ad-9afa-fa2d916f6036\syllabus.txt"
+[/HEADER]
+
+[QUESTION_LIST]
+
+    [QUESTION]
+        Q_TEXT: "|\n| 99\n--- PAGE 2 ---\n(b) ‘Explain the ER-p arveing algorithm with an\nexample . ie 3)\n(a) Explain in jetail about Design\nOr\nof. pr vedlictive ‘tra avislator.."
+        Q_MARKS: 0
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: "(b) Discuss: ¢heraddress code andits implementation with \nexample: (13)\n(a) Discuss. about: Ae run: tune: storage management ofa eode generator. in\n(18)\ndetail.\nOr\ne issues 1D: he: design: of the code! sonerator? Explain 1\n(18).\nBy\n(b) What. are th\ndetail."
+        Q_MARKS: 0
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: "(€) pPxplain che principle: gOurCces: of code optimization. in detail. (13)\nation of the ba\nsic block: with an \nexample. (13) :\nscuss' the DAG represent\n(b). Dis\nPART © oe (LS 15 ="
+        Q_MARKS: 0
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: "mark's)\ngrammar wall, work. and ‘compare various parser\node: ‘plocks? 7 (15)\ncontext: free :\nsing” yarlous ¢\n(a) How the. ¢\nformance Us\ncechniques per\nsxsw ve, the. features?\n(b) How ‘the data flow optisnization. ean be done: and compar\n(15)"
+        Q_MARKS: 0
+    [/QUESTION]
+
+[/QUESTION_LIST]

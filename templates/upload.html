@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Files | SmartExam Compiler</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+    function showFilename(input, spanId) {
+        // This function now updates a specific <span>
+        const span = document.getElementById(spanId);
+        if (input.files.length) {
+            span.textContent = input.files[0].name;
+            span.classList.remove('hidden');
+        } else {
+            span.textContent = '';
+            span.classList.add('hidden');
+        }
+    }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-gray-800 min-h-screen text-white">
+    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
+        <div class="text-2xl font-bold">SmartExam Compiler</div>
+        <a href="/" class="hover:text-blue-300">Home</a>
+    </nav>
+    <main class="max-w-xl mx-auto mt-12 p-8 bg-blue-800 rounded-2xl shadow-lg">
+        <h2 class="text-3xl font-bold mb-6 text-center">Upload Files</h2>
+        
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            
+            <label class="block mb-6">
+                <span class="block mb-2 font-semibold text-lg">1. Question Paper</span>
+                <span class="block mb-3 text-sm text-blue-200">Supported: PDF, JPG, PNG.</span>
+                <input 
+                    type="file" 
+                    name="paper" 
+                    id="paper" 
+                    accept=".pdf,.jpg,.jpeg,.png" 
+                    required 
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                    onchange="showFilename(this, 'paper-filename')">
+                <span id="paper-filename" class="block mt-2 text-blue-100 hidden"></span>
+            </label>
+            
+            <label class="block mb-8">
+                <span class="block mb-2 font-semibold text-lg">2. Syllabus</span>
+                <span class="block mb-3 text-sm text-blue-200">Supported: .txt</span>
+                <input 
+                    type="file" 
+                    name="syllabus" 
+                    id="syllabus" 
+                    accept=".txt" 
+                    required 
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                    onchange="showFilename(this, 'syllabus-filename')">
+                <span id="syllabus-filename" class="block mt-2 text-blue-100 hidden"></span>
+            </label>
+            
+            <button type="submit" class="w-full py-3 px-4 rounded-lg bg-blue-700 hover:bg-blue-600 text-lg font-bold shadow-lg mt-4">
+                Start Analysis
+            </button>
+        </form>
+    </main>
+    <footer class="text-center mt-12 py-4 bg-gray-900 text-sm">
+        SmartExam Compiler | Upload your files to begin analysis.
+    </footer>
+</body>
+</html>
