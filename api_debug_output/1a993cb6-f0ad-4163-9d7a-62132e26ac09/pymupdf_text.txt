@@ -1,0 +1,167 @@
+www.BrainKart.com
+https://play.google.com/store/apps/details?id=info.therithal.brainkart.annauniversitynotes
+
+www.BrainKart.com
+https://play.google.com/store/apps/details?id=info.therithal.brainkart.annauniversitynotes
+
+ 
+ 
+ 
+ 
+Click on Subject/Paper under Semester to enter.  
+ 
+1st Semester 
+Professional English - 
+I - HS3152 
+Matrices and Calculus 
+- MA3151 
+Engineering Physics - 
+PH3151 
+Engineering Chemistry 
+- CY3151 
+Problem Solving and 
+Python Programming - 
+GE3151 
+2nd Semester 
+Professional English 
+- II - HS3252 
+Statistics and 
+Numerical Methods - 
+MA3251 
+Engineering Graphics 
+- GE3251 
+Physics for 
+Information Science 
+- PH3256 
+Basic Electrical and 
+Electronics Engineering 
+- BE3251 
+Programming in C - 
+CS3251 
+3rd Semester 
+Discrete Mathematics 
+- MA3354 
+Digital Principles and 
+Computer Organization 
+- CS3351 
+Foundation of Data 
+Science - CS3352 
+Data Structure - 
+CS3301 
+Object Oriented 
+Programming - CS3391 
+4th Semester 
+Environmental Sciences 
+and Sustainability - 
+GE3451 
+Theory of Computation 
+- CS3452 
+Artificial Intelligence 
+and Machine Learning 
+- CS3491 
+Database Management 
+System - CS3492 
+Algorithms - CS3401 
+Introduction to 
+Operating Systems - 
+CS3451 
+5th Semester 
+Computer Networks - 
+CS3591 
+Compiler Design - 
+CS3501 
+Cryptography and 
+Cyber Security - 
+CB3491 
+Distributed Computing 
+- CS3551 
+Elective 1 
+Elective 2 
+6th Semester 
+Object Oriented 
+Software Engineering 
+- CCS356 
+Embedded Systems 
+and IoT - CS3691 
+Open Elective-1 
+Elective-3 
+Elective-4 
+Elective-5 
+Elective-6 
+7th Semester 
+Human Values and 
+Ethics - GE3791 
+Open Elective 2 
+Open Elective 3 
+Open Elective 4 
+Management Elective 
+8th Semester 
+Project Work / 
+ Intership 
+
+ 
+ 
+   
+ 
+ All Computer Engg Subjects - [ B.E., M.E., ] 
+(Click on Subjects to 
+enter) 
+Programming in C 
+Computer Networks 
+Operating Systems 
+Programming and Data 
+Structures I 
+Programming and Data 
+Structure II 
+Problem Solving and Python 
+Programming 
+Database Management Systems 
+Computer Architecture 
+Analog and Digital 
+Communication 
+Design and Analysis of 
+Algorithms 
+Microprocessors and 
+Microcontrollers 
+Object Oriented Analysis 
+and Design 
+Software Engineering 
+Discrete Mathematics 
+Internet Programming 
+Theory of Computation 
+Computer Graphics 
+Distributed Systems 
+Mobile Computing 
+Compiler Design 
+Digital Signal Processing 
+Artificial Intelligence 
+Software Testing 
+Grid and Cloud Computing 
+Data Ware Housing and Data 
+Mining 
+Cryptography and 
+Network Security 
+Resource Management 
+Techniques 
+Service Oriented Architecture Embedded and Real Time 
+Systems 
+Multi - Core Architectures 
+and Programming 
+Probability and Queueing Theory Physics for Information 
+Science 
+Transforms and Partial 
+Differential Equations 
+Technical English 
+Engineering Physics 
+Engineering Chemistry 
+Engineering Graphics 
+Total Quality 
+Management 
+Professional Ethics in 
+Engineering 
+Basic Electrical and Electronics 
+and Measurement Engineering 
+Problem Solving and 
+Python Programming 
+Environmental Science and 
+Engineering

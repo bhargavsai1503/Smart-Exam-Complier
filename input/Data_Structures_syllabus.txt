@@ -1,0 +1,7 @@
+Data Structures Syllabus
+1. Introduction to Data Structures: arrays, linked lists, stacks, queues.
+2. Trees: binary trees, BST, AVL, tree traversals.
+3. Graphs: representation, BFS, DFS, shortest path algorithms.
+4. Hashing and collision resolution techniques.
+5. Sorting and searching algorithms.
+6. Complexity analysis and performance evaluation.

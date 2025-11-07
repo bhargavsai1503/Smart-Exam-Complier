@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analysis Dashboard | SmartExam Compiler</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
@@ -9,96 +10,342 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-900 to-gray-800 text-white min-h-screen">
-    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
-        <div class="text-2xl font-bold">SmartExam Compiler</div>
-        <a href="/" class="hover:text-blue-300">Home</a>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 text-gray-800 min-h-screen">
+    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-lg sticky top-0 z-50">
+        <div class="text-2xl font-bold tracking-wide">SmartExam Compiler</div>
+        <div class="flex space-x-6 text-lg">
+            <a href="/" class="hover:text-blue-600 transition">Home</a>
+            <a href="/upload" class="hover:text-blue-600 transition">Upload</a>
+            <a href="/dashboard" class="text-blue-600 font-semibold">Dashboard</a>
+            <a href="/tree" class="hover:text-blue-600 transition">Parse Tree</a>
+            <a href="/enhanced" class="py-2 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow font-bold hover:from-blue-700 hover:to-purple-700 transition">Enhanced Paper</a>
+        </div>
     </nav>
-    <main class="p-8 max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6">Analysis Dashboard</h2>
-        <div class="bg-blue-800 p-6 rounded-xl shadow-md mb-8">
-            <h3 class="text-xl font-semibold mb-2">Paper Overview</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-4">
-                <div class="bg-blue-900 p-4 rounded-xl">Total Marks:<br><span class="text-2xl font-bold">{{ report.statistics['total_marks_declared']}}</span></div>
-                <div class="bg-blue-900 p-4 rounded-xl">Estimated Time:<br><span class="text-2xl font-bold">{{report.statistics['estimated_time_minutes']}} min</span></div>
-                <div class="bg-blue-900 p-4 rounded-xl">Difficulty Score:<br><span class="text-2xl font-bold">{{report.statistics['difficulty_medium_count']}} Medium</span></div>
-                <div class="bg-blue-900 p-4 rounded-xl">Quality Score:<br><span class="text-2xl font-bold">{{report.crispness_score}} / 100</span></div>
+    <main class="p-8 max-w-7xl mx-auto">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Analysis Dashboard</h2>
+            <p class="text-gray-600">Comprehensive analysis results for your question paper</p>
+        </div>
+        <div class="professional-card p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+                Paper Overview
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200">
+                    <div class="text-xl font-bold text-blue-600 mb-1">{{ report.statistics['total_marks_declared']}}</div>
+                    <div class="text-xs text-gray-600">Total Marks</div>
+                </div>
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl border border-green-200">
+                    <div class="text-xl font-bold text-green-600 mb-1">{{report.statistics['estimated_time_minutes']}} min</div>
+                    <div class="text-xs text-gray-600">Estimated Time</div>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-xl border border-yellow-200">
+                    <div class="text-xl font-bold text-yellow-600 mb-1">{{report.get('checks', {}).get('difficulty_distribution', {}).get('medium_count', 0)}}</div>
+                    <div class="text-xs text-gray-600">Medium Questions</div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl border border-purple-200">
+                    <div class="text-xl font-bold text-purple-600 mb-1">{{report.crispness_score}} / 100</div>
+                    <div class="text-xs text-gray-600">Quality Score</div>
+                </div>
             </div>
         </div>
-        <div>
-            <div class="mb-6 border-b border-blue-700 flex space-x-6">
-                <button onclick="showTab('overview')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Overview</button>
-                <button onclick="showTab('charts')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Charts</button>
-                <button onclick="showTab('checks')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Checks</button>
-                <button onclick="showTab('suggestions')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Suggestions</button>
+        <div class="professional-card p-8">
+            <div class="mb-6 border-b border-gray-200 flex space-x-6 overflow-x-auto">
+                <button onclick="showTab('overview')" data-tab="overview" class="tab-btn py-3 px-6 font-semibold hover:bg-blue-50 rounded-t-lg transition">Overview</button>
+                <button onclick="showTab('charts')" data-tab="charts" class="tab-btn py-3 px-6 font-semibold hover:bg-blue-50 rounded-t-lg transition">Charts</button>
+                <button onclick="showTab('checks')" data-tab="checks" class="tab-btn py-3 px-6 font-semibold hover:bg-blue-50 rounded-t-lg transition">Checks</button>
+                <button onclick="showTab('suggestions')" data-tab="suggestions" class="tab-btn py-3 px-6 font-semibold hover:bg-blue-50 rounded-t-lg transition">Suggestions</button>
+                <button onclick="showTab('lexical')" data-tab="lexical" class="tab-btn py-3 px-6 font-semibold hover:bg-blue-50 rounded-t-lg transition">Lexical Analysis</button>
+                <button onclick="showTab('tree')" data-tab="tree" class="tab-btn py-3 px-6 font-semibold hover:bg-blue-50 rounded-t-lg transition">Parse Tree</button>
             </div>
             <div id="overview" class="tab-content">
-                <h3 class="font-semibold mt-3">Extracted Text (Preview):</h3>
-                <pre class="bg-blue-900 p-4 rounded mt-2 whitespace-pre-wrap text-sm">{{extracted_text}}</pre>
-                <table class="mt-6 w-full text-left bg-blue-900 rounded-lg">
-                    <thead><tr><th>Check</th><th>Status</th><th>Message</th></tr></thead>
-                    <tbody>
-                      {% for check, info in report.checks.items() %}
-                      <tr>
-                        <td class="font-bold">{{check.replace('_',' ').title()}}</td>
-                        <td>
-                            {% if info.status == "PASS" %}
-                                <span class="text-green-500 font-bold">✔ PASS</span>
-                            {% elif info.status == "FAIL" %}
-                                <span class="text-red-500 font-bold">✖ FAIL</span>
-                            {% else %}
-                                <span class="text-yellow-500 font-bold">{{info.status}}</span>
-                            {% endif %}
-                        </td>
-                        <td>{{info.message}}</td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                </table>
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Extracted Text (Preview)
+                    </h3>
+                    <pre class="bg-gray-900 text-green-400 p-6 rounded-xl text-sm overflow-x-auto whitespace-pre-wrap font-mono">{{report.extracted_text}}</pre>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Validation Checks
+                    </h3>
+                    <div class="professional-table">
+                        <table class="min-w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Check</th>
+                                    <th class="text-left">Status</th>
+                                    <th class="text-left">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {% for check, info in report.checks.items() %}
+                              <tr class="hover:bg-gray-50">
+                                <td class="font-semibold">{{check.replace('_',' ').title()}}</td>
+                                <td>
+                                    {% if info.status == "PASS" %}
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            PASS
+                                        </span>
+                                    {% elif info.status == "FAIL" %}
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            FAIL
+                                        </span>
+                                    {% else %}
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                                            {{info.status}}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>{{info.message}}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div id="charts" class="tab-content hidden">
-                <h3 class="font-semibold mt-3 mb-2">Difficulty Distribution</h3>
-                <canvas id="difficultyChart" width="400" height="200"></canvas>
-                <h3 class="font-semibold mt-6 mb-2">Marks Distribution</h3>
-                <canvas id="marksChart" width="400" height="200"></canvas>
-                <h3 class="font-semibold mt-6 mb-2">Estimated vs Declared Time</h3>
-                <canvas id="timeChart" width="400" height="200"></canvas>
-                <script>
-                document.addEventListener("DOMContentLoaded", function(){
-                    // Use Chart.js to show data (inserted by Flask context)
-                    // Charts can use report.statistics and report.checks data
-                });
-                </script>
+            <div id="charts" class="tab-content hidden" data-report="{{ report|tojson }}">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                            </svg>
+                            Difficulty Distribution
+                        </h3>
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <canvas id="difficultyChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            Marks Distribution
+                        </h3>
+                        <div class="bg-white p-4 rounded-xl shadow">
+                            <canvas id="marksChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Estimated vs Declared Time
+                    </h3>
+                    <div class="bg-white p-4 rounded-xl shadow max-w-2xl mx-auto">
+                        <canvas id="timeChart" width="600" height="300"></canvas>
+                    </div>
+                </div>
             </div>
             <div id="checks" class="tab-content hidden">
-                <h3 class="font-semibold mt-3 mb-2">All Checks</h3>
-                <ul class="list-disc ml-8 mb-4">
+                <h3 class="text-xl font-semibold mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    All Validation Checks
+                </h3>
+                <div class="space-y-4">
                     {% for check, info in report.checks.items() %}
-                        <li><span class="font-bold">{{check}}:</span> {{info.message}}</li>
+                        <div class="flex items-start p-4 bg-gray-50 rounded-lg">
+                            <div class="flex-shrink-0 mr-4">
+                                {% if info.status == "PASS" %}
+                                    <svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    </svg>
+                                {% elif info.status == "FAIL" %}
+                                    <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                    </svg>
+                                {% else %}
+                                    <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">{{check.replace('_',' ').title()}}</h4>
+                                <p class="text-gray-600">{{info.message}}</p>
+                            </div>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
             <div id="suggestions" class="tab-content hidden">
-                <h3 class="font-semibold mt-3 mb-2">Improvement Suggestions</h3>
-                <ul class="list-disc ml-8 mb-4">
+                <h3 class="text-xl font-semibold mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Improvement Suggestions
+                </h3>
+                <div class="space-y-4">
                     {% for suggestion in report.suggestions %}
-                        <li>{{suggestion}}</li>
+                        <div class="flex items-start p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                            <svg class="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <p class="text-gray-700">{{suggestion}}</p>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
+            </div>
+            <div id="lexical" class="tab-content hidden">
+                <h3 class="text-xl font-semibold mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    Lexical Analysis
+                </h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            Input DSL (input.qp)
+                        </h4>
+                        <pre class="bg-gray-900 text-green-400 p-6 rounded-xl text-sm overflow-x-auto whitespace-pre-wrap font-mono max-h-96">{{ input_qp_data }}</pre>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Tokens Table
+                        </h4>
+                        <div class="professional-table">
+                            <table class="min-w-full">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Token</th>
+                                        <th class="text-left">Value</th>
+                                        <th class="text-left">Line</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for token in tokens %}
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="font-mono text-sm">{{ token.token }}</td>
+                                        <td class="font-mono text-sm">{{ token.value }}</td>
+                                        <td class="text-center">{{ token.line }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tree" class="tab-content hidden">
+                <h3 class="text-xl font-semibold mb-4 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                    </svg>
+                    Parse Tree Visualization
+                </h3>
+                <div class="bg-white p-6 rounded-xl shadow">
+                    {% if ast and not ast.startswith('Error:') %}
+                        <div class="w-full overflow-x-auto">
+                            {{ ast|safe }}
+                        </div>
+                    {% else %}
+                        <div class="text-center text-gray-500 py-8">
+                            <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+                            </svg>
+                            <p class="text-lg font-medium">Parse Tree Not Available</p>
+                            <p class="text-sm">{{ ast if ast and ast.startswith('Error:') else 'The compiler has not run yet or encountered an error.' }}</p>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </main>
-    <footer class="text-center mt-12 py-4 bg-gray-900 text-sm">
-        SmartExam Compiler | Dashboard
+    <footer class="text-center mt-12 py-4 bg-gray-800 text-white text-sm">
+        SmartExam Compiler | Analysis Dashboard
     </footer>
     <script>
     function showTab(tabName) {
+        // Hide all tab contents and show selected
         document.querySelectorAll('.tab-content').forEach(function(el) {
             el.classList.add('hidden');
         });
-        document.getElementById(tabName).classList.remove('hidden');
+        const tabContent = document.getElementById(tabName);
+        if (tabContent) tabContent.classList.remove('hidden');
+
+        // Update tab button styles: find the button by data-tab attribute
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.classList.remove('bg-blue-100', 'text-blue-700', 'border-b-2', 'border-blue-500');
+            btn.classList.add('text-gray-600');
+        });
+        const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabName}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('bg-blue-100', 'text-blue-700', 'border-b-2', 'border-blue-500');
+            activeBtn.classList.remove('text-gray-600');
+        }
+
+        // Render charts when charts tab is selected
+        if (tabName === 'charts') {
+            const chartsDiv = document.getElementById('charts');
+            if (chartsDiv) {
+                try {
+                    if (chartsDiv.dataset && chartsDiv.dataset.report && chartsDiv.dataset.report.trim() !== '') {
+                        const report = JSON.parse(chartsDiv.dataset.report);
+                        renderCharts(report);
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Error parsing inlined report JSON:', e);
+                }
+
+                // No inline data — try reading job id from URL query (?job=ID)
+                const params = new URLSearchParams(window.location.search);
+                const qjob = params.get('job');
+                const tryFetchReport = (id) => {
+                    if (!id) return Promise.reject('no-job-id');
+                    // Try API endpoint first
+                    return fetch(`/job/${id}/dashboard`).then(r => {
+                        if (!r.ok) throw new Error('api-not-available');
+                        return r.json();
+                    }).then(j => j.dashboard_data || j.semantic_report || j);
+                };
+
+                if (qjob) {
+                    tryFetchReport(qjob).then(report => renderCharts(report)).catch(err => {
+                        console.warn('Failed to fetch dashboard via API:', err);
+                        // fallback to static file under /jobs/<id>/semantic_report.json
+                        fetch(`/jobs/${qjob}/semantic_report.json`).then(r => r.json()).then(j => renderCharts(j)).catch(e => console.warn('fallback file fetch failed', e));
+                    });
+                } else {
+                    console.warn('No inlined report data and no job id in URL (use ?job=<id> to load data).');
+                }
+            }
+        }
     }
-    document.querySelectorAll('.tab-btn')[0].click(); // Show first tab on load
+
+    // Show first tab on load safely
+    const firstTab = document.querySelectorAll('.tab-btn')[0];
+    if (firstTab) firstTab.click();
     </script>
 </body>
 </html>

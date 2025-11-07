@@ -1,0 +1,16 @@
+digraph AST {
+  node [shape=record];
+  root [label="{Paper|stub}"];
+  q1 [label="{Q1|Marks: 0\n. Explain the concept of Abstract Data Types (ADTs) with \nexamples....}"];
+  root -> q1;
+  q2 [label="{Q2|Marks: 15\n. Write algorithms for insertion and deletion operations in a linked list....}"];
+  root -> q2;
+  q3 [label="{Q3|Marks: 15\n. Differentiate between stack and queue. Implement a circular queue using arrays....}"];
+  root -> q3;
+  q4 [label="{Q4|Marks: 15\n. Describe different tree traversal techniques with \nexamples....}"];
+  root -> q4;
+  q5 [label="{Q5|Marks: 20\n. What is hashing? Explain collision resolution techniques with \nexamples....}"];
+  root -> q5;
+  q6 [label="{Q6|Marks: 15\n. Discuss different sorting algorithms. Analyze their \ntime complexities....}"];
+  root -> q6;
+}

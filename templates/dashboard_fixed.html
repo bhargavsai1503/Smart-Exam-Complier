@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Dashboard | SmartExam Compiler</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-900 to-gray-800 text-white min-h-screen">
+    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
+        <div class="text-2xl font-bold">SmartExam Compiler</div>
+        <a href="/" class="hover:text-blue-300">Home</a>
+    </nav>
+    <main class="p-8 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Analysis Dashboard</h2>
+        <div class="bg-blue-800 p-6 rounded-xl shadow-md mb-8">
+            <h3 class="text-xl font-semibold mb-2">Paper Overview</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-4">
+                <div class="bg-blue-900 p-4 rounded-xl">Total Marks:<br><span class="text-2xl font-bold">{{ report.statistics['total_marks_declared']}}</span></div>
+                <div class="bg-blue-900 p-4 rounded-xl">Estimated Time:<br><span class="text-2xl font-bold">{{report.statistics['estimated_time_minutes']}} min</span></div>
+                <div class="bg-blue-900 p-4 rounded-xl">Difficulty Score:<br><span class="text-2xl font-bold">{{report.statistics['difficulty_medium_count']}} Medium</span></div>
+                <div class="bg-blue-900 p-4 rounded-xl">Quality Score:<br><span class="text-2xl font-bold">{{report.crispness_score}} / 100</span></div>
+            </div>
+        </div>
+        <div>
+            <div class="mb-6 border-b border-blue-700 flex space-x-6">
+                <button onclick="showTab('overview')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Overview</button>
+                <button onclick="showTab('charts')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Charts</button>
+                <button onclick="showTab('checks')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Checks</button>
+                <button onclick="showTab('suggestions')" class="tab-btn py-2 px-4 font-semibold hover:bg-blue-700">Suggestions</button>
+            </div>
+            <div id="overview" class="tab-content">
+                <h3 class="font-semibold mt-3">Extracted Text (Preview):</h3>
+                <pre class="bg-blue-900 p-4 rounded mt-2 whitespace-pre-wrap text-sm">{{report.extracted_text}}</pre>
+                <table class="mt-6 w-full text-left bg-blue-900 rounded-lg">
+                    <thead><tr><th>Check</th><th>Status</th><th>Message</th></tr></thead>
+                    <tbody>
+                      {% for check, info in report.checks.items() %}
+                      <tr>
+                        <td class="font-bold">{{check.replace('_',' ').title()}}</td>
+                        <td>
+                            {% if info.status == "PASS" %}
+                                <span class="text-green-500 font-bold">✔ PASS</span>
+                            {% elif info.status == "FAIL" %}
+                                <span class="text-red-500 font-bold">✖ FAIL</span>
+                            {% else %}
+                                <span class="text-yellow-500 font-bold">{{info.status}}</span>
+                            {% endif %}
+                        </td>
+                        <td>{{info.message}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div id="charts" class="tab-content hidden">
+                <h3 class="font-semibold mt-3 mb-2">Difficulty Distribution</h3>
+                <canvas id="difficultyChart" width="400" height="200"></canvas>
+                <h3 class="font-semibold mt-6 mb-2">Marks Distribution</h3>
+                <canvas id="marksChart" width="400" height="200"></canvas>
+                <h3 class="font-semibold mt-6 mb-2">Estimated vs Declared Time</h3>
+                <canvas id="timeChart" width="400" height="200"></canvas>
+                <script>
+                document.addEventListener("DOMContentLoaded", function(){
+                    const report = {{ report|tojson }};
+                    renderCharts(report);
+                });
+                </script>
+            </div>
+            <div id="checks" class="tab-content hidden">
+                <h3 class="font-semibold mt-3 mb-2">All Checks</h3>
+                <ul class="list-disc ml-8 mb-4">
+                    {% for check, info in report.checks.items() %}
+                        <li><span class="font-bold">{{check}}:</span> {{info.message}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="suggestions" class="tab-content hidden">
+                <h3 class="font-semibold mt-3 mb-2">Improvement Suggestions</h3>
+                <ul class="list-disc ml-8 mb-4">
+                    {% for suggestion in report.suggestions %}
+                        <li>{{suggestion}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-12 py-4 bg-gray-900 text-sm">
+        SmartExam Compiler | Dashboard
+    </footer>
+    <script>
+    function showTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(function(el) {
+            el.classList.add('hidden');
+        });
+        document.getElementById(tabName).classList.remove('hidden');
+    }
+    document.querySelectorAll('.tab-btn')[0].click(); // Show first tab on load
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard Preview</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="static/styles.css">
+  <script src="static/scripts.js"></script>
+</head>
+<body>
+  <h1>Dashboard Preview</h1>
+  <div id="charts" data-report='{
+    "subject": "Stub Subject",
+    "questions": [
+      {"text":"Define compiler and interpreter.", "marks":10, "difficulty":"EASY"},
+      {"text":"Explain phases of compiler design.", "marks":10, "difficulty":"MEDIUM"},
+      {"text":"Construct a DFA.", "marks":12, "difficulty":"HARD"},
+      {"text":"Top-down vs bottom-up parsing.", "marks":10, "difficulty":"MEDIUM"},
+      {"text":"List tokens in lexical analysis.", "marks":8, "difficulty":"EASY"},
+      {"text":"Design a simple compiler.", "marks":15, "difficulty":"HARD"},
+      {"text":"Syntax-directed translation.", "marks":10, "difficulty":"MEDIUM"},
+      {"text":"Properties of CFGs.", "marks":5, "difficulty":"EASY"},
+      {"text":"Code optimization techniques.", "marks":10, "difficulty":"MEDIUM"},
+      {"text":"Intermediate code generation.", "marks":10, "difficulty":"MEDIUM"}
+    ],
+    "statistics": {
+      "difficulty_easy_count": 3,
+      "difficulty_medium_count": 5,
+      "difficulty_hard_count": 2,
+      "marks_distribution": {"5":1,"8":1,"10":6,"12":1,"15":1},
+      "time_comparison": {"estimated":195, "declared":180}
+    }
+  }'></div>
+  <div id="overview" class="tab-content">
+    <p>Overview</p>
+  </div>
+  <div id="charts" class="tab-content">
+    <canvas id="difficultyChart" width="400" height="200"></canvas>
+    <canvas id="marksChart" width="400" height="200"></canvas>
+    <canvas id="timeChart" width="400" height="200"></canvas>
+  </div>
+  <script>
+    // Inline a sample report from jobs/a77f2fbd...
+  </script>
+</body>
+</html>
