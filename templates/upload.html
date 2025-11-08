@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Files | SmartExam Compiler</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
     <script>
     function showFilename(input, spanId) {
         // This function now updates a specific <span>
@@ -20,51 +22,92 @@
     }
     </script>
 </head>
-<body class="bg-gradient-to-br from-blue-900 to-gray-800 min-h-screen text-white">
-    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
-        <div class="text-2xl font-bold">SmartExam Compiler</div>
-        <a href="/" class="hover:text-blue-300">Home</a>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen text-gray-800">
+    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-lg sticky top-0 z-50">
+        <div class="text-2xl font-bold tracking-wide">SmartExam Compiler</div>
+        <div class="space-x-6 text-lg">
+            <a href="/" class="hover:text-blue-600 transition">Home</a>
+            <a href="/upload" class="text-blue-600 font-semibold">Upload</a>
+            <a href="/dashboard" class="hover:text-blue-600 transition">Dashboard</a>
+            <a href="/tree" class="hover:text-blue-600 transition">Parse Tree</a>
+            <a href="/enhanced" class="hover:text-blue-600 transition">Enhanced Paper</a>
+        </div>
     </nav>
-    <main class="max-w-xl mx-auto mt-12 p-8 bg-blue-800 rounded-2xl shadow-lg">
-        <h2 class="text-3xl font-bold mb-6 text-center">Upload Files</h2>
-        
-        <form method="POST" action="/upload" enctype="multipart/form-data">
-            
-            <label class="block mb-6">
-                <span class="block mb-2 font-semibold text-lg">1. Question Paper</span>
-                <span class="block mb-3 text-sm text-blue-200">Supported: PDF, JPG, PNG.</span>
-                <input 
-                    type="file" 
-                    name="paper" 
-                    id="paper" 
-                    accept=".pdf,.jpg,.jpeg,.png" 
-                    required 
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+
+    <main class="max-w-2xl mx-auto mt-12 p-8 bg-white rounded-2xl shadow-xl fade-in">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Upload Files</h2>
+            <p class="text-sm text-gray-600">Upload your question paper and syllabus to begin the analysis process</p>
+        </div>
+
+        <form method="POST" action="/upload" enctype="multipart/form-data" class="space-y-6">
+
+            <div class="space-y-2">
+                <label class="block text-base font-semibold text-gray-700">
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Question Paper
+                    </span>
+                </label>
+                <span class="block text-xs text-gray-500">Supported formats: PDF, JPG, PNG</span>
+                <input
+                    type="file"
+                    name="paper"
+                    id="paper"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    required
+                    class="form-input w-full file:mr-3 file:py-2 file:px-3 file:rounded-l-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                     onchange="showFilename(this, 'paper-filename')">
-                <span id="paper-filename" class="block mt-2 text-blue-100 hidden"></span>
-            </label>
-            
-            <label class="block mb-8">
-                <span class="block mb-2 font-semibold text-lg">2. Syllabus</span>
-                <span class="block mb-3 text-sm text-blue-200">Supported: .txt</span>
-                <input 
-                    type="file" 
-                    name="syllabus" 
-                    id="syllabus" 
-                    accept=".txt" 
-                    required 
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                <span id="paper-filename" class="block mt-2 text-blue-600 text-xs hidden"></span>
+            </div>
+
+            <div class="space-y-2">
+                <label class="block text-base font-semibold text-gray-700">
+                    <span class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        Syllabus File
+                    </span>
+                </label>
+                <span class="block text-xs text-gray-500">Supported format: .txt</span>
+                <input
+                    type="file"
+                    name="syllabus"
+                    id="syllabus"
+                    accept=".txt"
+                    required
+                    class="form-input w-full file:mr-3 file:py-2 file:px-3 file:rounded-l-lg file:border-0 file:text-xs file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
                     onchange="showFilename(this, 'syllabus-filename')">
-                <span id="syllabus-filename" class="block mt-2 text-blue-100 hidden"></span>
-            </label>
-            
-            <button type="submit" class="w-full py-3 px-4 rounded-lg bg-blue-700 hover:bg-blue-600 text-lg font-bold shadow-lg mt-4">
-                Start Analysis
-            </button>
+                <span id="syllabus-filename" class="block mt-2 text-green-600 text-xs hidden"></span>
+            </div>
+
+            <div class="pt-4">
+                <button type="submit" class="btn-primary w-full text-lg py-4 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Start Analysis
+                </button>
+            </div>
         </form>
+
+        <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">What happens next?</h3>
+            <ul class="text-sm text-blue-700 space-y-1">
+                <li>• OCR extraction from your question paper</li>
+                <li>• Lexical and semantic analysis</li>
+                <li>• Difficulty assessment and scoring</li>
+                <li>• Comprehensive dashboard with insights</li>
+                <li>• AI-powered optimization suggestions</li>
+            </ul>
+        </div>
     </main>
-    <footer class="text-center mt-12 py-4 bg-gray-900 text-sm">
-        SmartExam Compiler | Upload your files to begin analysis.
+
+    <footer class="text-center mt-12 py-4 bg-gray-800 text-white text-sm">
+        SmartExam Compiler | Built with Python, Lex, Yacc, Flask | IIITDM Kancheepuram
     </footer>
 </body>
 </html>

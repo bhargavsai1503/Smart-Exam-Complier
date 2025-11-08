@@ -1,0 +1,16 @@
+Data Structures
+Total Marks: 100
+Total Time (minutes): 180
+Answer all questions.
+Q1. Explain the concept of Abstract Data Types (ADTs) with examples.
+[15 Marks]
+Q2. Write algorithms for insertion and deletion operations in a linked list.
+[15 Marks]
+Q3. Differentiate between stack and queue. Implement a circular queue using arrays.
+[15 Marks]
+Q4. Describe different tree traversal techniques with examples.
+[20 Marks]
+Q5. What is hashing? Explain collision resolution techniques with examples.
+[15 Marks]
+Q6. Discuss different sorting algorithms. Analyze their time complexities.
+[20 Marks]

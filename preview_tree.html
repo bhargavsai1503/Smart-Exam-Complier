@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Tree Preview</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <h1>Tree Preview</h1>
+  <div id="tree-container" style="width:800px;height:400px;border:1px solid #ccc;">
+    <div id="tree"></div>
+    <div id="loading">loading...</div>
+  </div>
+  <script id="ast-data" type="application/json">{
+    "name": "paper",
+    "children": [
+      { "name": "header", "children": [{ "name": "Compiler Design" }] },
+      { "name": "questions", "children": [
+        { "name": "Q1: Define compiler" },
+        { "name": "Q2: Explain phases" },
+        { "name": "Q3: Construct DFA" },
+        { "name": "Q4: Parsing techniques" },
+        { "name": "Q5: Tokens" },
+        { "name": "Q6: Design compiler" }
+      ] }
+    ]
+  }</script>
+  <script src="static/scripts.js"></script>
+  <script>
+    // initialize tree renderer
+    (function(){
+      const astElem = document.getElementById('ast-data');
+      try{ const raw = astElem.textContent; console.log('RAW AST', raw && raw.slice(0,200)); } catch(e){}
+      // call the dashboard's DOMContentLoaded handlers manually
+      document.dispatchEvent(new Event('DOMContentLoaded'));
+    })();
+  </script>
+</body>
+</html>

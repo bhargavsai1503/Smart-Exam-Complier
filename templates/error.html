@@ -1,1 +1,58 @@
-<!-- HTML template placeholder -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error | SmartExam Compiler</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-gradient-to-br from-red-50 to-orange-50 min-h-screen text-gray-800">
+    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-lg sticky top-0 z-50">
+        <div class="text-2xl font-bold tracking-wide">SmartExam Compiler</div>
+        <div class="space-x-6 text-lg">
+            <a href="/" class="hover:text-blue-600 transition">Home</a>
+            <a href="/upload" class="hover:text-blue-600 transition">Upload</a>
+            <a href="/dashboard" class="hover:text-blue-600 transition">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="max-w-2xl mx-auto mt-16 p-8">
+        <div class="professional-card p-8 text-center">
+            <div class="w-24 h-24 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                </svg>
+            </div>
+
+            <h1 class="text-2xl font-bold text-red-600 mb-4">Oops! Something went wrong</h1>
+            <p class="text-gray-600 mb-6">
+                We encountered an error while processing your request. This might be due to an issue with the uploaded files or a temporary system problem.
+            </p>
+
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                <h3 class="font-semibold text-red-800 mb-2">What you can try:</h3>
+                <ul class="text-left text-red-700 space-y-1">
+                    <li>• Check that your files are in the correct format (PDF, PNG, JPG for papers; TXT for syllabus)</li>
+                    <li>• Ensure the files are not corrupted or empty</li>
+                    <li>• Try uploading smaller files</li>
+                    <li>• Refresh the page and try again</li>
+                </ul>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/upload" class="btn-primary">
+                    Try Again
+                </a>
+                <a href="/" class="btn-secondary">
+                    Go Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center mt-16 py-4 bg-gray-800 text-white text-sm">
+        SmartExam Compiler | Error Page
+    </footer>
+</body>
+</html>

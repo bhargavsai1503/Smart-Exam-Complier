@@ -2,31 +2,167 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enhanced Question Paper | SmartExam Compiler</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
 </head>
-<body class="bg-gradient-to-br from-blue-900 to-gray-800 min-h-screen text-white">
-    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
-        <div class="text-2xl font-bold">SmartExam Compiler</div>
-        <a href="/" class="hover:text-blue-300">Home</a>
-        <a href="/dashboard" class="hover:text-blue-300">Dashboard</a>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen text-gray-800">
+    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-lg sticky top-0 z-50">
+        <div class="text-2xl font-bold tracking-wide">SmartExam Compiler</div>
+        <div class="flex space-x-6 text-lg">
+            <a href="/" class="hover:text-blue-600 transition">Home</a>
+            <a href="/upload" class="hover:text-blue-600 transition">Upload</a>
+            <a href="/dashboard" class="hover:text-blue-600 transition">Dashboard</a>
+            <a href="/tree" class="hover:text-blue-600 transition">Parse Tree</a>
+            <a href="/enhanced" class="text-blue-600 font-semibold">Enhanced Paper</a>
+        </div>
     </nav>
-    <main class="max-w-5xl mx-auto mt-8 p-8 bg-blue-800 rounded-2xl shadow-lg">
-        <h2 class="text-3xl font-bold mb-4">Enhanced Question Paper</h2>
-        <a href="/download/enhanced" class="py-2 px-5 mr-2 bg-blue-700 rounded-lg shadow font-bold hover:bg-blue-600 transition">Download TXT</a>
-        <a href="/download/pdf-report" class="py-2 px-5 bg-blue-700 rounded-lg shadow font-bold hover:bg-blue-600 transition">Download PDF Report</a>
-        <h3 class="mt-8 mb-2 font-semibold">Improvement Suggestions:</h3>
-        <ul class="list-disc ml-8 mb-4">
-            {% for suggestion in suggestions %}
-                <li>{{suggestion}}</li>
-            {% endfor %}
-        </ul>
-        <h3 class="font-semibold mb-2">Enhanced Paper:</h3>
-        <pre class="bg-blue-900 p-4 rounded mt-2 whitespace-pre-wrap text-sm">{{ enhanced_text }}</pre>
+    <main class="max-w-7xl mx-auto mt-8 p-8">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Enhanced Question Paper</h2>
+            <p class="text-gray-600">AI-optimized question paper with analysis comparison</p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 mb-8">
+            <a href="/download/enhanced" class="btn-primary flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download TXT
+            </a>
+            <a href="/download/enhanced_paper" class="btn-success flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download Enhanced Paper PDF
+            </a>
+            <a href="/download/pdf-report" class="btn-secondary flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download PDF Report
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- Original Analysis -->
+            <div class="professional-card p-4">
+                <h3 class="text-xl font-semibold mb-6 flex items-center text-green-600">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Original Analysis
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-sm">Total Marks:</span>
+                        <span class="text-base font-bold text-gray-800">{{ original_report.statistics.total_marks_declared }}</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-sm">Estimated Time:</span>
+                        <span class="text-base font-bold text-gray-800">{{ original_report.statistics.estimated_time_minutes }} min</span>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium block mb-2 text-sm">Difficulty Distribution:</span>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <div class="text-center p-2 bg-green-100 rounded">
+                                <div class="font-semibold text-green-800">{{ original_report.get('checks', {}).get('difficulty_distribution', {}).get('easy_count', 0) }}</div>
+                                <div class="text-green-600">Easy</div>
+                            </div>
+                            <div class="text-center p-2 bg-yellow-100 rounded">
+                                <div class="font-semibold text-yellow-800">{{ original_report.get('checks', {}).get('difficulty_distribution', {}).get('medium_count', 0) }}</div>
+                                <div class="text-yellow-600">Medium</div>
+                            </div>
+                            <div class="text-center p-2 bg-red-100 rounded">
+                                <div class="font-semibold text-red-800">{{ original_report.get('checks', {}).get('difficulty_distribution', {}).get('hard_count', 0) }}</div>
+                                <div class="text-red-600">Hard</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-sm">Quality Score:</span>
+                        <span class="text-base font-bold text-gray-800">{{ original_report.crispness_score }}/100</span>
+                    </div>
+                </div>
+                <h4 class="font-semibold mt-6 mb-4 flex items-center text-sm">
+                    <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Original Suggestions:
+                </h4>
+                <ul class="list-disc ml-6 space-y-2 text-sm">
+                    {% for suggestion in original_report.suggestions %}
+                        <li class="text-gray-700">{{ suggestion }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Enhanced Analysis -->
+            <div class="professional-card p-4">
+                <h3 class="text-xl font-semibold mb-6 flex items-center text-purple-600">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Enhanced Analysis
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-sm">Total Marks:</span>
+                        <span class="text-base font-bold text-gray-800">{{ enhanced_report.statistics.total_marks_calculated }}</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-sm">Estimated Time:</span>
+                        <span class="text-base font-bold text-gray-800">{{ enhanced_report.total_time }} min</span>
+                    </div>
+                    <div class="p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium block mb-2 text-sm">Difficulty Distribution:</span>
+                        <div class="grid grid-cols-3 gap-2 text-xs">
+                            <div class="text-center p-2 bg-green-100 rounded">
+                                <div class="font-semibold text-green-800">{{ enhanced_report.get('checks', {}).get('difficulty_distribution', {}).get('easy_count', 0) }}</div>
+                                <div class="text-green-600">Easy</div>
+                            </div>
+                            <div class="text-center p-2 bg-yellow-100 rounded">
+                                <div class="font-semibold text-yellow-800">{{ enhanced_report.get('checks', {}).get('difficulty_distribution', {}).get('medium_count', 0) }}</div>
+                                <div class="text-yellow-600">Medium</div>
+                            </div>
+                            <div class="text-center p-2 bg-red-100 rounded">
+                                <div class="font-semibold text-red-800">{{ enhanced_report.get('checks', {}).get('difficulty_distribution', {}).get('hard_count', 0) }}</div>
+                                <div class="text-red-600">Hard</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <span class="font-medium text-sm">Quality Score:</span>
+                        <span class="text-base font-bold text-gray-800">{{ enhanced_report.crispness_score }}/100</span>
+                    </div>
+                </div>
+                <h4 class="font-semibold mt-6 mb-4 flex items-center text-sm">
+                    <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Enhanced Suggestions:
+                </h4>
+                <ul class="list-disc ml-6 space-y-2 text-sm">
+                    {% for suggestion in enhanced_report.suggestions %}
+                        <li class="text-gray-700">{{ suggestion }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="professional-card p-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+                <svg class="w-6 h-6 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Enhanced Paper Content
+            </h3>
+            <pre class="bg-gray-900 text-green-400 p-6 rounded-xl text-sm overflow-x-auto whitespace-pre-wrap font-mono">{{ enhanced_text }}</pre>
+        </div>
     </main>
-    <footer class="text-center mt-8 py-4 bg-gray-900 text-sm">
+    <footer class="text-center mt-8 py-4 bg-gray-800 text-white text-sm">
         SmartExam Compiler | Enhanced Output
     </footer>
 </body>

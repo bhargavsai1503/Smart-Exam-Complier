@@ -18,6 +18,9 @@ nav {
     align-items: center;
     justify-content: space-between;
     color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
 
 nav .text-2xl {
@@ -126,56 +129,152 @@ footer {
     background: #e2e8f0;
 }
 
-.bg-neumorphic {
-    background: #222f43;
-    box-shadow: 8px 8px 24px #182035, -8px -8px 24px #283950;
-    border-radius: 1.25rem;
+/* ======= MODERN ENHANCEMENTS ======= */
+/* Professional gradients and shadows */
+.professional-card {
+    background: linear-gradient(145deg, #ffffff, #f1f5f9);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-.button-neumorphic {
-    background: #243651;
-    box-shadow: 4px 4px 12px #182538, -4px -4px 12px #31426c;
-    border: none;
-    color: #dedfff;
+.professional-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Button styles */
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
-    padding: 0.75rem 2rem;
     font-weight: 600;
-    transition: box-shadow 0.2s, background 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.button-neumorphic:hover {
-    background: #16203a;
-    box-shadow: 2px 2px 6px #16203a, -2px -2px 6px #31426c;
-    color: #8ec7ee;
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 78, 216, 0.4);
 }
 
-/* Card styles */
-.card {
-    background: #25314a;
-    border-radius: 1.25rem;
-    box-shadow: 0 2px 8px #1c2339;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Tab button active/inactive */
-.tab-btn {
-    border-radius: 1rem 1rem 0 0;
-    background: #25314a;
-    color: #aadfff;
-    border-bottom: 2px solid transparent;
-}
-.tab-btn.active {
-    background: #315085;
-    color: #fff;
-    border-bottom: 2px solid #3192dd;
-}
-
-/* Misc form elements for upload */
-input[type=file] {
-    background: #f6f8fa;
-    border: 1px solid #3b4864;
+.btn-secondary {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    color: #475569;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.75rem;
-    color: #182538;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Form enhancements */
+.form-input {
+    border: 2px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 0.75rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+/* Table styles */
+.professional-table {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.professional-table th {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    color: #374151;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+}
+
+.professional-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    main {
+        padding: 2rem 1rem;
+    }
+    main h1 {
+        font-size: 2rem;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        color: #f1f5f9;
+    }
+    .professional-card {
+        background: linear-gradient(145deg, #1e293b, #334155);
+        color: #f1f5f9;
+    }
+}
+
+/* ======= ICON SIZE FALLBACKS ======= */
+/* Some pages use inline SVG icons with Tailwind utility classes (e.g. w-4 h-4).
+   If Tailwind utilities are not available or get overridden, these rules ensure
+   inline SVG icons in navs, buttons and cards remain a sane, small size. */
+nav svg,
+.btn-primary svg,
+.btn-secondary svg,
+button svg,
+.professional-card svg,
+.tab-btn svg,
+.inline-flex svg,
+.flex svg,
+a svg {
+    width: 1rem !important; /* ~16px, matches Tailwind w-4 */
+    height: 1rem !important;
+    max-width: 1rem !important;
+    max-height: 1rem !important;
+    vertical-align: middle;
+}
+
+/* Allow larger svgs where explicitly intended (e.g., charts or svg containers) */
+#tree svg,
+.chartjs-render-monitor,
+.large-icon svg {
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+}

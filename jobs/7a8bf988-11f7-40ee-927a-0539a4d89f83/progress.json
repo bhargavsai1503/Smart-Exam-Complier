@@ -1,0 +1,37 @@
+{
+  "started": {
+    "status": "running",
+    "ts": 1762538185,
+    "message": "stub started"
+  },
+  "phase1": {
+    "status": "done",
+    "ts": 1762538185,
+    "message": "32 tokens"
+  },
+  "phase2": {
+    "status": "done",
+    "ts": 1762538185,
+    "message": "6 nodes"
+  },
+  "phase3": {
+    "status": "done",
+    "ts": 1762538185,
+    "message": "6 questions"
+  },
+  "phase45": {
+    "status": "done",
+    "ts": 1762538185,
+    "message": "optimization complete"
+  },
+  "phase6": {
+    "status": "done",
+    "ts": 1762538185,
+    "message": "latex files written (pdf if pdflatex present)"
+  },
+  "finished": {
+    "status": "done",
+    "ts": 1762538185,
+    "message": "stub complete"
+  }
+}

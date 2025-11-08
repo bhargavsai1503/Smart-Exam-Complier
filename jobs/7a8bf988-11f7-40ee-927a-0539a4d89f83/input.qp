@@ -1,0 +1,46 @@
+
+[HEADER]
+    SUBJECT: "Unknown Subject"
+    TOTAL_MARKS: 100
+    TOTAL_TIME: 180
+    SYLLABUS_PATH: "jobs\7a8bf988-11f7-40ee-927a-0539a4d89f83\syllabus.txt"
+[/HEADER]
+
+[QUESTION_LIST]
+
+    [QUESTION]
+        Q_TEXT: ". Explain the concept of Abstract Data Types (ADTs) with \nexamples."
+        Q_MARKS: 15
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: ". Write algorithms for insertion and deletion operations in a linked list."
+        Q_MARKS: 15
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: ". Differentiate between stack and queue. Implement a circular queue using arrays."
+        Q_MARKS: 15
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: ". Describe different tree traversal techniques with \nexamples."
+        Q_MARKS: 20
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: ". What is hashing? Explain collision resolution techniques with \nexamples."
+        Q_MARKS: 15
+    [/QUESTION]
+
+
+    [QUESTION]
+        Q_TEXT: ". Discuss different sorting algorithms. Analyze their \ntime complexities."
+        Q_MARKS: 20
+    [/QUESTION]
+
+[/QUESTION_LIST]

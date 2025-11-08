@@ -1,0 +1,118 @@
+{
+  "subject": "Stub Subject",
+  "total_marks": 80,
+  "total_time": 65,
+  "questions": [
+    {
+      "text": ". Explain the concept of Abstract Data Types (ADTs) with \\nexamples.",
+      "marks": 0,
+      "difficulty": "MEDIUM",
+      "estimated_time": 2,
+      "syllabus_topic": "N/A",
+      "status_flag": 2,
+      "crispness": "CRISP"
+    },
+    {
+      "text": ". Write algorithms for insertion and deletion operations in a linked list.",
+      "marks": 15,
+      "difficulty": "EASY",
+      "estimated_time": 12,
+      "syllabus_topic": "N/A",
+      "status_flag": 2,
+      "crispness": "CRISP"
+    },
+    {
+      "text": ". Differentiate between stack and queue. Implement a circular queue using arrays.",
+      "marks": 15,
+      "difficulty": "HARD",
+      "estimated_time": 12,
+      "syllabus_topic": "Stack",
+      "status_flag": 0,
+      "crispness": "CRISP"
+    },
+    {
+      "text": ". Describe different tree traversal techniques with \\nexamples.",
+      "marks": 15,
+      "difficulty": "MEDIUM",
+      "estimated_time": 12,
+      "syllabus_topic": "N/A",
+      "status_flag": 2,
+      "crispness": "CRISP"
+    },
+    {
+      "text": ". What is hashing? Explain collision resolution techniques with \\nexamples.",
+      "marks": 20,
+      "difficulty": "MEDIUM",
+      "estimated_time": 15,
+      "syllabus_topic": "N/A",
+      "status_flag": 2,
+      "crispness": "CRISP"
+    },
+    {
+      "text": ". Discuss different sorting algorithms. Analyze their \\ntime complexities.",
+      "marks": 15,
+      "difficulty": "HARD",
+      "estimated_time": 12,
+      "syllabus_topic": "Sorting",
+      "status_flag": 0,
+      "crispness": "CRISP"
+    }
+  ],
+  "checks": {
+    "marks_validation": {
+      "status": "PASS",
+      "calculated_total": 80,
+      "declared_total": 80,
+      "difference": 0,
+      "message": "Marks sum matches declared total"
+    },
+    "time_estimation": {
+      "status": "PASS",
+      "estimated_time": 264,
+      "declared_time": 0,
+      "difference": 264,
+      "message": "Estimated time: 264 minutes vs declared: 0 minutes"
+    },
+    "difficulty_distribution": {
+      "status": "WARN",
+      "easy_count": 1,
+      "medium_count": 3,
+      "hard_count": 2,
+      "easy_percentage": 16.7,
+      "medium_percentage": 50.0,
+      "hard_percentage": 33.3,
+      "message": "Difficulty distribution needs improvement"
+    },
+    "syllabus_coverage": {
+      "status": "SKIP",
+      "message": "No syllabus information available"
+    },
+    "crispness_analysis": {
+      "status": "PASS",
+      "crisp_count": 6,
+      "verbose_count": 0,
+      "ambiguous_count": 0,
+      "crispness_percentage": 100.0,
+      "message": "6/6 questions are crisp and clear"
+    }
+  },
+  "statistics": {
+    "total_questions": 6,
+    "total_marks_calculated": 80,
+    "total_marks_declared": 80,
+    "estimated_time_minutes": 264,
+    "declared_time_minutes": 0,
+    "difficulty_easy_count": 1,
+    "difficulty_medium_count": 3,
+    "difficulty_hard_count": 2
+  },
+  "warnings": [
+    "Time allocation mismatch: 264 minutes difference"
+  ],
+  "suggestions": [
+    "Consider increasing allotted time or reducing question complexity",
+    "Add more easy-level questions (define, state, list)",
+    "Reduce hard-level questions for better balance"
+  ],
+  "crispness_score": 85
+}

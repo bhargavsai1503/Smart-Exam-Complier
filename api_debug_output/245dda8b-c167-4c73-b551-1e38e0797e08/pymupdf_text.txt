@@ -1,0 +1,21 @@
+Compiler Design
+Total Marks:
+100
+Total Time (minutes):
+180
+Syllabus File:
+data/cs3501_syllabus.txt
+Answer all questions.
+Q1. Explain the main phases of a compiler in order and the function of each phase.
+[20 Marks]
+Q2. What is an LALR(1) parser? Explain how it is different from an SLR parser.
+[15 Marks]
+Q3. Define a syntax-directed definition (SDD) and differentiate between S-attributed and
+L-attributed definitions.
+[15 Marks]
+Q4. Generate three-address code for the following expression: a = b * -c + b * -c
+[20 Marks]
+Q5. Describe the principles of code optimization. What is a basic block?
+[15 Marks]
+Q6. What is an activation record in the context of runtime storage management?
+[15 Marks]

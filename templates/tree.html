@@ -2,32 +2,321 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parse Tree Visualization | SmartExam Compiler</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        #tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-blue-900 to-gray-800 min-h-screen text-white">
-    <nav class="flex items-center justify-between px-6 py-4 bg-blue-950 shadow-lg">
-        <div class="text-2xl font-bold">SmartExam Compiler</div>
-        <a href="/" class="hover:text-blue-300">Home</a>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen text-gray-800">
+    <nav class="flex items-center justify-between px-6 py-4 bg-white shadow-lg sticky top-0 z-50">
+        <div class="text-2xl font-bold tracking-wide">SmartExam Compiler</div>
+        <div class="flex space-x-6 text-lg">
+            <a href="/" class="hover:text-blue-600 transition">Home</a>
+            <a href="/upload" class="hover:text-blue-600 transition">Upload</a>
+            <a href="/dashboard" class="hover:text-blue-600 transition">Dashboard</a>
+            <a href="/tree" class="text-blue-600 font-semibold">Parse Tree</a>
+            <a href="/enhanced" class="hover:text-blue-600 transition">Enhanced Paper</a>
+        </div>
     </nav>
-    <main class="max-w-5xl mx-auto mt-8 bg-blue-800 rounded-2xl shadow-lg p-8">
-        <h2 class="text-3xl font-bold mb-6">Parse Tree Visualization</h2>
-        <div id="tree" class="w-full h-96 bg-blue-900 rounded"></div>
-        <button onclick="window.location.reload()" class="mt-6 py-2 px-5 rounded-lg bg-blue-700">Reload Tree</button>
+
+    <main class="max-w-6xl mx-auto mt-8 p-8">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Parse Tree Visualization</h2>
+            <p class="text-gray-600">Interactive AST representation of the parsed question paper structure</p>
+        </div>
+
+        <div class="professional-card p-8">
+            <div class="flex flex-wrap gap-4 mb-6">
+                <button onclick="resetTree()" class="btn-primary flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Reset View
+                </button>
+                <button onclick="zoomIn()" class="btn-secondary flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                    </svg>
+                    Zoom In
+                </button>
+                <button onclick="zoomOut()" class="btn-secondary flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"></path>
+                    </svg>
+                    Zoom Out
+                </button>
+            </div>
+
+            <div id="tree-container" class="w-full h-96 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border-2 border-dashed border-blue-200 flex items-center justify-center">
+                <div id="tree" class="w-full h-full"></div>
+                <div id="loading" class="text-center text-gray-500">
+                    <svg class="w-8 h-8 mx-auto mb-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    <p class="text-sm">Loading parse tree...</p>
+                </div>
+            </div>
+
+            <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                <h4 class="font-semibold text-blue-800 mb-2">How to use:</h4>
+                <ul class="text-sm text-blue-700 space-y-1">
+                    <li>• <strong>Drag:</strong> Click and drag to pan around the tree</li>
+                    <li>• <strong>Zoom:</strong> Use mouse wheel or zoom buttons to zoom in/out</li>
+                    <li>• <strong>Reset:</strong> Click reset to return to the initial view</li>
+                    <li>• <strong>Hover:</strong> Hover over nodes to see additional information</li>
+                </ul>
+            </div>
+        </div>
     </main>
-    <footer class="text-center mt-12 py-4 bg-gray-900 text-sm">
+
+    <footer class="text-center mt-8 py-4 bg-gray-800 text-white text-sm">
         SmartExam Compiler | AST View
     </footer>
+
+    <div id="tooltip"></div>
+
     <script id="ast-data" type="application/json">
     {{ ast|tojson|safe }}
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const data = JSON.parse(document.getElementById('ast-data').textContent);
-    d3.select("#tree").append("pre").text(JSON.stringify(data, null, 2));
-});
-</script>
+    </script>
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const astElem = document.getElementById('ast-data');
+        const loading = document.getElementById('loading');
+        if (!astElem) {
+            if (loading) loading.innerHTML = '<p class="text-sm text-red-600">AST data element not found.</p>';
+            return;
+        }
+
+        const raw = (astElem.textContent || '').trim();
+        if (!raw) {
+            // Try to fetch AST or semantic report using job id from URL (?job=ID)
+            const params = new URLSearchParams(window.location.search);
+            const qjob = params.get('job');
+            if (qjob) {
+                // Try API semantic report endpoint
+                fetch(`/job/${qjob}/semantic-report`).then(r => {
+                    if (!r.ok) throw new Error('api-not-available');
+                    return r.json();
+                }).then(j => {
+                    const report = j.semantic_report || j.dashboard_data || j;
+                    // if report has an 'ast' field, use it
+                    if (report && report.ast) {
+                        try { renderTree(report.ast); } catch(e){ console.error(e); }
+                        return;
+                    }
+                    // Otherwise build a basic tree from questions
+                    if (report && Array.isArray(report.questions) && report.questions.length) {
+                        const treeLike = { name: 'paper', children: [{ name: 'questions', children: report.questions.map((q,i)=>({ name: `Q${i+1}: ${ (q.text||'').slice(0,40) }` })) }] };
+                        try { renderTree(treeLike); } catch(e){ console.error(e); }
+                        return;
+                    }
+                    if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">No AST available to render.</p>';
+                }).catch(err => {
+                    console.warn('Could not fetch semantic report:', err);
+                    if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">No AST available to render.</p>';
+                });
+            } else {
+                if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">No AST available to render.</p>';
+            }
+            return;
+        }
+
+        let data = null;
+        try {
+            data = JSON.parse(raw);
+        } catch (err) {
+            console.error('Failed to parse AST JSON:', err);
+            if (loading) loading.innerHTML = `<p class="text-sm text-red-600">Error parsing AST JSON: ${err.message}</p>`;
+            return;
+        }
+
+        // Handle string data (SVG or error messages)
+        if (typeof data === 'string') {
+            if (data === '') {
+                // Empty string means no AST data, try to fetch from API
+                const params = new URLSearchParams(window.location.search);
+                const qjob = params.get('job');
+                if (qjob) {
+                    // Try API semantic report endpoint
+                    fetch(`/job/${qjob}/semantic-report`).then(r => {
+                        if (!r.ok) throw new Error('api-not-available');
+                        return r.json();
+                    }).then(j => {
+                        const report = j.semantic_report || j.dashboard_data || j;
+                        // if report has an 'ast' field, use it
+                        if (report && report.ast) {
+                            try { renderTree(report.ast); } catch(e){ console.error(e); }
+                            return;
+                        }
+                        // Otherwise build a basic tree from questions
+                        if (report && Array.isArray(report.questions) && report.questions.length) {
+                            const treeLike = { name: 'paper', children: [{ name: 'questions', children: report.questions.map((q,i)=>({ name: `Q${i+1}: ${ (q.text||'').slice(0,40) }` })) }] };
+                            try { renderTree(treeLike); } catch(e){ console.error(e); }
+                            return;
+                        }
+                        if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">No AST available to render.</p>';
+                    }).catch(err => {
+                        console.warn('Could not fetch semantic report:', err);
+                        if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">No AST available to render.</p>';
+                    });
+                } else {
+                    if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">No AST available to render.</p>';
+                }
+                return;
+            } else if (data.startsWith('<svg')) {
+                const treeDiv = document.getElementById('tree');
+                treeDiv.innerHTML = data;
+                if (loading) loading.style.display = 'none';
+                return;
+            } else if (data.startsWith('Error:')) {
+                if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">' + data + '</p>';
+                return;
+            }
+        }
+
+        // If AST is an array, wrap in a root node so d3.hierarchy can consume it
+        if (Array.isArray(data)) {
+            data = { name: 'root', children: data };
+        }
+
+        if (!data || (typeof data !== 'object') || (Object.keys(data).length === 0)) {
+            if (loading) loading.innerHTML = '<p class="text-sm text-gray-500">AST is empty or invalid — nothing to render.</p>';
+            return;
+        }
+
+        try {
+            renderTree(data);
+        } catch (err) {
+            console.error('Error rendering AST:', err);
+            if (loading) loading.innerHTML = `<p class="text-sm text-red-600">Failed to render parse tree: ${err.message}</p>`;
+        }
+    });
+
+    function renderTree(data) {
+        const container = document.getElementById('tree-container');
+        const loading = document.getElementById('loading');
+        const treeDiv = document.getElementById('tree');
+
+        if (loading) loading.style.display = 'none';
+        if (treeDiv) treeDiv.style.display = 'block';
+
+        const width = container.clientWidth || 800;
+        const height = container.clientHeight || 400;
+
+        // Remove any previous svg to allow re-render
+        d3.select('#tree').selectAll('svg').remove();
+
+        const svgRoot = d3.select("#tree")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append("g")
+            .attr("transform", "translate(40, 0)");
+
+        const treeLayout = d3.tree().size([height - 100, Math.max(200, width - 160)]);
+        const root = d3.hierarchy(data);
+
+        treeLayout(root);
+
+        // Add links
+        svgRoot.selectAll(".link")
+            .data(root.links())
+            .enter()
+            .append("path")
+            .attr("class", "link")
+            .attr("d", d3.linkHorizontal()
+                .x(d => d.y)
+                .y(d => d.x))
+            .attr("fill", "none")
+            .attr("stroke", "#cbd5e1")
+            .attr("stroke-width", 2);
+
+        // Add nodes
+        const node = svgRoot.selectAll(".node")
+            .data(root.descendants())
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        node.append("circle")
+            .attr("r", 8)
+            .attr("fill", d => d.children ? "#3b82f6" : "#10b981")
+            .attr("stroke", "#ffffff")
+            .attr("stroke-width", 2);
+
+        node.append("text")
+            .attr("dy", ".35em")
+            .attr("x", d => d.children ? -12 : 12)
+            .attr("text-anchor", d => d.children ? "end" : "start")
+            .attr("fill", "#374151")
+            .attr("font-size", "12px")
+            .attr("font-weight", "500")
+            .text(d => d.data.name || d.data.type || "Node");
+
+        // Add hover functionality
+        node.on("mouseover", function(event, d) {
+            const tooltip = document.getElementById('tooltip');
+            if (!tooltip) return;
+            tooltip.innerHTML = `\n                <strong>Name:</strong> ${d.data.name || 'N/A'}<br>\n                <strong>Type:</strong> ${d.data.type || 'N/A'}<br>\n                <strong>Children:</strong> ${d.children ? d.children.length : 0}\n            `;
+            tooltip.style.left = (event.pageX + 10) + 'px';
+            tooltip.style.top = (event.pageY - 10) + 'px';
+            tooltip.style.display = 'block';
+        })
+        .on("mouseout", function() {
+            const tooltip = document.getElementById('tooltip');
+            if (tooltip) tooltip.style.display = 'none';
+        });
+
+        // Add zoom behavior
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 4])
+            .on("zoom", function(event) {
+                svgRoot.attr("transform", event.transform);
+            });
+
+        d3.select("#tree svg").call(zoom);
+    }
+
+    function resetTree() {
+        const svg = d3.select("#tree svg");
+        if (svg.empty()) return;
+        svg.transition().duration(750).call(
+            d3.zoom().transform,
+            d3.zoomIdentity.translate(40, 0).scale(1)
+        );
+    }
+
+    function zoomIn() {
+        const svg = d3.select("#tree svg");
+        if (svg.empty()) return;
+        svg.transition().duration(300).call(
+            d3.zoom().scaleBy, 1.5
+        );
+    }
+
+    function zoomOut() {
+        const svg = d3.select("#tree svg");
+        if (svg.empty()) return;
+        svg.transition().duration(300).call(
+            d3.zoom().scaleBy, 0.67
+        );
+    }
+    </script>
 </body>
 </html>
